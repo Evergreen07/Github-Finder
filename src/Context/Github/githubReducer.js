@@ -7,7 +7,7 @@ import {
     DEFAULT_DISPLAY
 } from '../types';
 
-export default (state, action) => {
+const exReducer = (state, action) => {
     switch(action.type) {
         case DEFAULT_DISPLAY:
             return{
@@ -57,3 +57,5 @@ export default (state, action) => {
             return state;
     }
 }
+
+export default exReducer;
