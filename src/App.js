@@ -1,25 +1,35 @@
-import logo from './logo.svg';
+import React from 'react';
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
+import Home from './Components/Pages/Home';
+import About from './Components/Pages/About';
+import NotFound from './Components/Pages/NotFound';
+import Navbar from './Components/Layout/Navbar';
+import Auser from './Components/Users/Auser';
 import './App.css';
 
-function App() {
+import GithubState from './Context/Github/githubState'
+import AlertState from './Context/Alert/alertState'
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <GithubState>
+      <AlertState>
+      <Router>
+        <div className="App">
+            <Navbar/>
+            <div className="container">
+              <Switch>
+                  <Route exact path = '/' component={Home}/>
+                  <Route exact path = '/About' component={About}/>
+                  <Route exact path = '/user/:login' component={Auser}/>
+                  <Route component={NotFound}/>
+              </Switch>
+            </div>
+        </div>
+      </Router>
+      </AlertState>
+      </GithubState>
+    );
 }
 
 export default App;
